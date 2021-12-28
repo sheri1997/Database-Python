@@ -9,10 +9,29 @@ from mysql.connector import errorcode
 class DataBase:
     @staticmethod
     def connection_database():
+        first_name = 'Shreesh'
+        last_name = 'Pandey'
+        mobile_no = '9454977489'
+        email_id = 'shvspandey@gmail.com'
+        location = 'Lucknow'
+        state = 'Uttar Pradesh'
         try:
-            conn = mysql.connector.connect(host='losthost', user='root', port='2003', password='',
+            conn = mysql.connector.connect(host='losthost', user='root', port='3306', password='',
                                            database='28december2021')
             cursor = conn.cursor()
+            sql_query = (
+                "insert into details""(first_name,last_name,mobile_no,email_id,location,state)""values(%("
+                "first_name)s,%(last_name)s,%(mobile_no)s,%(email_id)s,%(location)s,%(state)s)")
+            info = {
+                'first_name': first_name,
+                'last_name': last_name,
+                'mobile_no': mobile_no,
+                'email_id': email_id,
+                'location': location,
+                'state': state
+            }
+            cursor.execute(sql_query,info)
+            conn.commit()
         except mysql.connector.Error as er:
             if er.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                 print("Something Wrong with Username and password")
@@ -20,4 +39,6 @@ class DataBase:
                 print("Database doe not exist")
             else:
                 print(er)
+
+
 
