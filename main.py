@@ -21,7 +21,3 @@ class DataBase:
             else:
                 print(er)
 
-
-
-ss = DataBase.connection_database()
-print(ss)
