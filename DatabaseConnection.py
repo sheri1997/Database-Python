@@ -11,13 +11,13 @@ class DataBase:
     def connection_database():
         first_name = 'Shreesh'
         last_name = 'Pandey'
-        mobile_no = '9454977489'
+        mobile_no = '94549774891'
         email_id = 'shvspandey@gmail.com'
         location = 'Lucknow'
         state = 'Uttar Pradesh'
         try:
-            conn = mysql.connector.connect(host='losthost', user='root', port='3306', password='',
-                                           database='28december2021')
+            conn = mysql.connector.connect(host='127.0.0.1', user='root', port='3306', password='9454977489',
+                                           database='databa')
             cursor = conn.cursor()
             sql_query = (
                 "insert into details""(first_name,last_name,mobile_no,email_id,location,state)""values(%("
@@ -30,15 +30,18 @@ class DataBase:
                 'location': location,
                 'state': state
             }
-            cursor.execute(sql_query,info)
+            cursor.execute(sql_query, info)
             conn.commit()
         except mysql.connector.Error as er:
             if er.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                 print("Something Wrong with Username and password")
             elif er.errno == errorcode.ER_BAD_DB_ERROR:
-                print("Database doe not exist")
+                print("Database does not exist")
             else:
                 print(er)
+        return conn
+
+
 
 
 
