@@ -44,4 +44,6 @@ class DataBase:
 
 
 
+ss = DataBase.connection_database()
+print(ss)
 

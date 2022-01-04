@@ -38,14 +38,12 @@ class Queries:
         return data
 
     @staticmethod
-    def update(first_name, last_name, mobile_no, email_id, location, state):
+    def update(mobile_no):
         '''
         Performing the Update Operation
         :return: Will return the updated database
         '''
-        user_update = "update details set first_name = '%s' where last_name = '%s' where email_id = '%s' where " \
-                      "location = '%s' where state = '%s'" % (first_name, last_name, mobile_no, location, state,
-                                                              email_id)
+        user_update = "UPDATE details SET mobile_no = '%s'" % mobile_no
         cursor.execute(user_update)
         database.commit()
         return "User Details Updated Successfully"
@@ -56,11 +54,17 @@ class Queries:
         Performing the Delete Operation
         :return: Will Delete The User from the database
         '''
-        user_delete = "delete from details where first_name = '%s'" % (first_name)
+        user_delete = "delete from details where first_name = '%s'" % first_name
         cursor.execute(user_delete)
         database.commit()
         return "User Deleted Successfully"
 
+    # @staticmethod
+    # def inner_join():
+    #     user_join = "SELECT \ details.first_name AS details, \ products.name AS favorite \ FROM details \ INNER JOIN " \ "products ON details.favorite = products.id " cursor.execute(user_join)
+    #     database.commit()
+    #     return "Join Successfully Executed"
 
-ss = Queries.retrieve()
+
+ss = Queries.update("945422")
 print(ss)
